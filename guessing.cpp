@@ -12,7 +12,7 @@ Guessing::Guessing(int bet) {
     // Initialize the slots with random numbers
     int sum = 5 * bet;
     for (int i = 0; i < 5; ++i) {
-        int curr = rand() % (3*bet+1);
+        int curr = rand() % (2*bet+1);
         if(sum==0){
             pool[i] = 0;
         }

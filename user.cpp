@@ -12,6 +12,9 @@ User::User() : name(""), password(""), balance(0) {}
 void User::setName(const std::string& newName) {
     name = newName;
 }
+void User::setPassword(const std::string &newPassword){
+    password = newPassword;
+}
 void User::setBalance(int newBalance){
     balance = newBalance;
 }

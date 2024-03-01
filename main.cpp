@@ -9,6 +9,8 @@
 #include "guessing.cpp"
 #include <string>
 #include <vector>
+#include "blackjack.h"
+#include "blackjack.cpp"
 User user;
 Login login;
 void showStartScreen();
@@ -110,10 +112,7 @@ bool isInteger(const std::string& s) {
         return false;
     }
 }
-void playBlackJack(int bet){
-    std::vector<int> player_card_list = {};
-    std::vector<int> comp_card_list = {};
-}
+//Interface for games. Easy to change.
 void playGames(std::string game, int bet){
     system("cls");
     std::cout << "=====================" << std::endl;
@@ -135,7 +134,7 @@ void playGames(std::string game, int bet){
         }
         else{
             if(game=="blackJack"){
-                playBlackJack(bet);
+                playBlackjack(bet,&user);
             }
             else if(game=="guessing"){
                 Guessing guessing(bet);
@@ -182,6 +181,46 @@ void playGames(std::string game, int bet){
 
 }
 
+void changePassword(){
+    system("cls");
+    std::string oldPass = user.getPassword();
+    std::string password1;
+    std::string password2;
+    std::cout<<"Please type the password you want to change to:"<<std::endl;
+    std::cin>>password1;
+    if(password1.length()<8){
+        std::cout<<"Your password should not less than 8 chars."<<std::endl;
+        std::cout << "Press any key to retry...";
+        std::cin.ignore();
+        std::cin.get();
+        changePassword();
+        return;
+    }
+    else if(password1==oldPass){
+        std::cout<<"Your new password should be the same as the old one "<<std::endl;
+        std::cout << "Press any key to retry...";
+        std::cin.ignore();
+        std::cin.get();
+        changePassword();
+        return;
+    }
+    std::cout<<"Please retype your new password"<<std::endl;
+    std::cin>>password2;
+    if(password1!=password2){
+        std::cout<<"The passwords do not match"<<std::endl;
+        std::cout << "Press any key to retry...";
+        std::cin.ignore();
+        std::cin.get();
+        changePassword();
+        return;
+    }
+    user.setPassword(password1);
+    std::cout<<"Successfully Changed your password"<<std::endl;
+    std::cout << "Press any key to continue...";
+    std::cin.ignore();
+    std::cin.get();
+    showStartScreen();
+}
 
 void showStartScreen() {
     // Clear the screen
@@ -205,7 +244,8 @@ void showStartScreen() {
     std::cout << "2. Play Guessing" << std::endl;
     std::cout << "3. Play Slots" << std::endl;
     std::cout << "4. Check Balance" <<std::endl;
-    std::cout << "5. Exit" << std::endl;
+    std::cout << "5. Change Password" <<std::endl;
+    std::cout << "6. Exit" << std::endl;
     std::cout << "=====================" << std::endl;
     std::cout << "Enter your input: ";
     std::cin >> input; // Wait for user input
@@ -223,6 +263,9 @@ void showStartScreen() {
         checkBalance();
     }
     else if(input=="5"){
+        changePassword();
+    }
+    else if(input=="6"){
         std::cout<<"Thanks for visiting! Goodbye."<<std::endl;
         return;
     }
