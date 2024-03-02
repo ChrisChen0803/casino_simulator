@@ -1,5 +1,4 @@
 Welcome to the Casino! Have Fun!
-=====================
 What you wanna do today?
 1. Play Blackjack
 2. Play Guessing
@@ -9,4 +8,3 @@ What you wanna do today?
 6. Check Balance
 7. Change Password
 8. Exit
-=====================
