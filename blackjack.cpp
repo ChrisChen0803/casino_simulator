@@ -117,7 +117,7 @@ void playBlackjack(int bet, User *user)
             if (playerHand.isBusted())
             {
                 std::cout << "Busted! You lose." << std::endl;
-                std::cout << "Press any key to continue..."<<std::endl;
+                std::cout << "Press any key to continue..." << std::endl;
                 std::cin.ignore();
                 std::cin.get();
                 return;
@@ -129,7 +129,7 @@ void playBlackjack(int bet, User *user)
         }
         else
         {
-            std::cout << "Invalid Input!.Press any key to continue..."<<std::endl;
+            std::cout << "Invalid Input!.Press any key to continue..." << std::endl;
             std::cin.ignore();
             std::cin.get();
         }
@@ -152,7 +152,7 @@ void playBlackjack(int bet, User *user)
         {
             std::cout << "Dealer busted! You win." << std::endl;
             user->setBalance(balance + 2 * bet);
-            std::cout << "Press any key to continue..."<<std::endl;
+            std::cout << "Press any key to continue..." << std::endl;
             std::cin.ignore();
             std::cin.get();
             return;
@@ -173,7 +173,7 @@ void playBlackjack(int bet, User *user)
         std::cout << "It's a tie." << std::endl;
         user->setBalance(balance + bet);
     }
-    std::cout << "Press any key to continue..."<<std::endl;
+    std::cout << "Press any key to continue..." << std::endl;
     std::cin.ignore();
     std::cin.get();
 }

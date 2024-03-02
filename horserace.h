@@ -7,7 +7,8 @@
 #include <cstdlib>
 #include <ctime>
 
-class HorseRace {
+class HorseRace
+{
 private:
     std::vector<int> horses;
     int trackLength;

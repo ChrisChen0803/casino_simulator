@@ -7,9 +7,25 @@
 #include <ctime>
 #include <algorithm>
 
-enum Rank {ACE = 1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN = 10, JACK = 10, QUEEN = 10, KING = 10};
+enum Rank
+{
+    ACE = 1,
+    TWO,
+    THREE,
+    FOUR,
+    FIVE,
+    SIX,
+    SEVEN,
+    EIGHT,
+    NINE,
+    TEN = 10,
+    JACK = 10,
+    QUEEN = 10,
+    KING = 10
+};
 
-class Deck {
+class Deck
+{
 private:
     std::vector<int> cards;
 
@@ -19,7 +35,8 @@ public:
     int dealCard();
 };
 
-class Hand {
+class Hand
+{
 protected:
     std::vector<int> cards;
 
@@ -29,7 +46,8 @@ public:
     void printHand() const;
 };
 
-class BlackjackHand : public Hand {
+class BlackjackHand : public Hand
+{
 public:
     bool isBusted() const;
     bool hasBlackjack() const;

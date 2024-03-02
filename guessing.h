@@ -4,13 +4,14 @@
 #include "user.cpp"
 #include <iostream>
 #include <vector>
-class Guessing {
+class Guessing
+{
 private:
     std::vector<int> pool;
 
 public:
-    Guessing(int bet); // Constructor
-    void playGuessing(int bet,User* user); // Play the slot game
+    Guessing(int bet);                      // Constructor
+    void playGuessing(int bet, User *user); // Play the slot game
 };
 
 #endif

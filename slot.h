@@ -2,13 +2,14 @@
 #define SLOT_H
 #include "user.h"
 #include "user.cpp"
-class Slot {
+class Slot
+{
 private:
     int slots[3];
 
 public:
-    Slot(); // Constructor
-    void playslot(int bet,User* user); // Play the slot game
+    Slot();                             // Constructor
+    void playslot(int bet, User *user); // Play the slot game
 };
 
 #endif // SLOT_H

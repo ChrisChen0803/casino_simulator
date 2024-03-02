@@ -80,11 +80,11 @@ vector<int> HorseRace::determineSecond()
         {
             max = horses[i];
             res.clear();
-            res.push_back(i+1);
+            res.push_back(i + 1);
         }
         else if (max == horses[i])
         {
-            res.push_back(i+1);
+            res.push_back(i + 1);
         }
     }
     return res;
@@ -92,18 +92,18 @@ vector<int> HorseRace::determineSecond()
 vector<int> HorseRace::determineLast()
 {
     vector<int> res;
-    int min = trackLength+1;
+    int min = trackLength + 1;
     for (int i = 0; i < (int)horses.size(); i++)
     {
         if (min > horses[i])
         {
             min = horses[i];
             res.clear();
-            res.push_back(i+1);
+            res.push_back(i + 1);
         }
         else if (min == horses[i])
         {
-            res.push_back(i+1);
+            res.push_back(i + 1);
         }
     }
     return res;
