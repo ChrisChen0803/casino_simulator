@@ -1,4 +1,4 @@
-Welcome to the Casino! Have Fun!
+Welcome to the Casino! Have Fun!<br>
 What you wanna do today?
 1. Play Blackjack
 2. Play Guessing
