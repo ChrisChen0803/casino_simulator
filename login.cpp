@@ -56,7 +56,7 @@ void Login::saveCredentialsToFile(const std::string& filename) {
 }
 bool Login::registerUser(const std::string& username, const std::string& password) {
     if (credentials.find(username) == credentials.end()) {
-        User user(username, password, 0);
+        User user(username, password, 100);
         credentials[username] = user;
         return true;
     }
