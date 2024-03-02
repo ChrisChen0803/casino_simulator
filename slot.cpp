@@ -94,7 +94,7 @@ void Slot::playslot(int bet, User* user) {
     }
     balance = balance + winningBet;
     user->setBalance(balance);
-    std::cout << "Press any key to continue...";
+    std::cout << "Press any key to continue..."<<std::endl;
     std::cin.ignore();
     std::cin.get();
 }

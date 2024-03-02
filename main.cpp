@@ -7,6 +7,7 @@
 #include "login.cpp"
 #include "guessing.h"
 #include "guessing.cpp"
+#include "horserace.cpp"
 #include <string>
 #include <vector>
 #include "blackjack.h"
@@ -97,20 +98,10 @@ void checkBalance(){
     std::string username = user.getName();
     int balance = user.getBalance();
     std::cout<<"Hi "<<username<<"! Your balance is "<<balance<<"."<<std::endl;
-    std::cout << "Press any key to continue...";
+    std::cout << "Press any key to continue..."<<std::endl;
     std::cin.ignore();
     std::cin.get();
     showStartScreen();
-}
-bool isInteger(const std::string& s) {
-    try {
-        std::stoi(s);
-        return true;
-    } catch (const std::invalid_argument&) {
-        return false;
-    } catch (const std::out_of_range&) {
-        return false;
-    }
 }
 //Interface for games. Easy to change.
 void playGames(std::string game, int bet){
@@ -127,7 +118,7 @@ void playGames(std::string game, int bet){
         int currBalance = user.getBalance();
         if(currBalance<bet){
             std::cout << "Your balance is not enough. Please change the bet"<<std::endl;
-            std::cout<<"Your Balance is "<<currBalance<<"! Press any key to continue...";
+            std::cout<<"Your Balance is "<<currBalance<<"! Press any key to continue..."<<std::endl;
             std::cin.ignore();
             std::cin.get();
             playGames(game,bet);
@@ -144,7 +135,9 @@ void playGames(std::string game, int bet){
                 Slot slot;
                 slot.playslot(bet,&user);
             }
-            
+            else if(game=="horserace"){
+                playHorseRace(bet,&user);
+            }            
             showStartScreen();
         }
         return;
@@ -154,13 +147,13 @@ void playGames(std::string game, int bet){
         std::string b;
         std::cin>>b;
         if(isInteger(b)&&std::stoi(b)>0){
-            std::cout << "Change Successful! Press any key to continue...";
+            std::cout << "Change Successful! Press any key to continue..."<<std::endl;
             std::cin.ignore();
             std::cin.get();
             playGames(game,std::stoi(b));
         }
         else{
-            std::cout << "Invalid! Press any key to continue...";
+            std::cout << "Invalid! Press any key to continue..."<<std::endl;
             std::cin.ignore();
             std::cin.get();
             playGames(game,bet);
@@ -173,7 +166,7 @@ void playGames(std::string game, int bet){
         return;
     }
     else{
-        std::cout << "Invalid! Press any key to continue...";
+        std::cout << "Invalid! Press any key to continue..."<<std::endl;
         std::cin.ignore();
         std::cin.get();
         playGames(game,bet);
@@ -216,10 +209,38 @@ void changePassword(){
     }
     user.setPassword(password1);
     std::cout<<"Successfully Changed your password"<<std::endl;
-    std::cout << "Press any key to continue...";
+    std::cout << "Press any key to continue..."<<std::endl;
     std::cin.ignore();
     std::cin.get();
     showStartScreen();
+}
+
+void topUpServ(){
+    std::cout << "Please enter how much you want to charge" <<std::endl;
+    std::string b;
+    std::cin>>b;
+    if(isInteger(b)&&std::stoi(b)>0){
+        if(std::stoi(b)>10000){
+            std::cout << "Sorry The maximum amount of a single top-up is 10000. Press any key to continue..."<<std::endl;
+            std::cin.ignore();
+            std::cin.get();
+            topUpServ();
+        }
+        int balance = user.getBalance();
+        balance = balance + std::stoi(b);
+        user.setBalance(balance);
+        std::cout << "Successful! Press any key to continue..."<<std::endl;
+        std::cin.ignore();
+        std::cin.get();
+        showStartScreen();
+    }
+    else{
+        std::cout << "Invalid! Press any key to continue..."<<std::endl;
+        std::cin.ignore();
+        std::cin.get();
+        showStartScreen();
+    }
+    return;
 }
 
 void showStartScreen() {
@@ -228,11 +249,11 @@ void showStartScreen() {
     system("cls"); // For Windows
     std::string input;
     // Print the start screen
-    std::cout << "Welcome to the Casino!" << std::endl;
+    std::cout << "Welcome to the Casino! Have Fun!" << std::endl;
     std::cout << "=====================" << std::endl;
     if(user.getName()==""){
         std::cout << "Please Login"<<std::endl;
-        std::cout << "Press any key to continue...";
+        std::cout << "Press any key to continue..."<<std::endl;
         std::cin.ignore();
         std::cin.get();
         mainLogin();
@@ -243,9 +264,11 @@ void showStartScreen() {
     std::cout << "1. Play Blackjack" << std::endl;
     std::cout << "2. Play Guessing" << std::endl;
     std::cout << "3. Play Slots" << std::endl;
-    std::cout << "4. Check Balance" <<std::endl;
-    std::cout << "5. Change Password" <<std::endl;
-    std::cout << "6. Exit" << std::endl;
+    std::cout << "4. Play Hourse Betting"<<std::endl;
+    std::cout << "5. Top Up" <<std::endl;
+    std::cout << "6. Check Balance" <<std::endl;
+    std::cout << "7. Change Password" <<std::endl;
+    std::cout << "8. Exit" << std::endl;
     std::cout << "=====================" << std::endl;
     std::cout << "Enter your input: ";
     std::cin >> input; // Wait for user input
@@ -260,17 +283,23 @@ void showStartScreen() {
         playGames("slot",10);
     }
     else if(input=="4"){
-        checkBalance();
+        playGames("horserace",10);
     }
     else if(input=="5"){
-        changePassword();
+        topUpServ();
     }
     else if(input=="6"){
+        checkBalance();
+    }
+    else if(input=="7"){
+        changePassword();
+    }
+    else if(input=="8"){
         std::cout<<"Thanks for visiting! Goodbye."<<std::endl;
         return;
     }
     else{
-        std::cout << "Invalid Input! Press any key to continue...";
+        std::cout << "Invalid Input! Press any key to continue..."<<std::endl;
         std::cin.ignore();
         std::cin.get();
         showStartScreen();

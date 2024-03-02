@@ -64,7 +64,7 @@ void Guessing::playGuessing(int bet, User* user){
     std::cout<<"Congratulations! You win "<<winningbet<<"!"<<std::endl;
     balance = balance + winningbet;
     user->setBalance(balance);
-    std::cout << "Press any key to continue...";
+    std::cout << "Press any key to continue..."<<std::endl;
     std::cin.ignore();
     std::cin.get();
 }
