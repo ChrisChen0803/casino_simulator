@@ -274,7 +274,71 @@ void topUpServ()
     }
     return;
 }
-
+void transaction(){
+    system("cls");
+    std::cout<<"Please type the user you want to do transaction to..."<<std::endl;
+    string input;
+    std::cin>>input;
+    User targUser = login.getUser(input);
+    if(targUser.getName()==""){
+        std::cout<<"Invalid Username. Please try again"<<std::endl;
+        std::cout << "Press any key to continue..." << std::endl;
+        std::cin.ignore();
+        std::cin.get();
+        transaction();
+        return;
+    }
+    std::cout<<"How much you want to transact?"<<std::endl;
+    string amount;
+    std::cin>>amount;
+    int balance = user.getBalance();
+    if(!(isInteger(amount)&&stoi(amount)>0)){
+        std::cout<<"Invalid Number. Pleaes try again...";
+        std::cout << "Press any key to continue..." << std::endl;
+        std::cin.ignore();
+        std::cin.get();
+        transaction();
+        return;
+    }
+    else if(stoi(amount)>balance){
+        std::cout<<"Your balance is not enough. Please try again...";
+        std::cout << "Press any key to continue..." << std::endl;
+        std::cin.ignore();
+        std::cin.get();
+        transaction();
+        return;
+    }
+    else{
+        std::cout<<"Please enter your password"<<std::endl;
+        string psw;
+        std::cin>>psw;
+        string password = user.getPassword();
+        if(psw!=password){
+            std::cout<<"Wrong password. Please try again...";
+            std::cout << "Press any key to continue..." << std::endl;
+            std::cin.ignore();
+            std::cin.get();
+            transaction();
+            return;
+        }
+        else{
+            balance = balance - stoi(amount);
+            user.setBalance(balance);
+            int targBalance = targUser.getBalance();
+            targBalance = targBalance + stoi(amount);
+            targUser.setBalance(targBalance);
+            login.updateCred(targUser.getName(), targUser);
+            login.updateCred(user.getName(), user);
+            std::cout<<"Success!";
+            std::cout << "Press any key to continue..." << std::endl;
+            std::cin.ignore();
+            std::cin.get();
+            showStartScreen();
+        }
+    }
+    //login.updateCred(user.getName(), user);
+        
+}
 void showStartScreen()
 {
     // Clear the screen
@@ -303,6 +367,7 @@ void showStartScreen()
     std::cout << "5. Top Up" << std::endl;
     std::cout << "6. Check Balance" << std::endl;
     std::cout << "7. Change Password" << std::endl;
+    std::cout << "8. Transaction" << std::endl;
     std::cout << "8. Exit" << std::endl;
     std::cout << "=====================" << std::endl;
     std::cout << "Enter your input: ";
@@ -337,6 +402,10 @@ void showStartScreen()
         changePassword();
     }
     else if (input == "8")
+    {
+        transaction();
+    }
+    else if (input == "9")
     {
         std::cout << "Thanks for visiting! Goodbye." << std::endl;
         return;
