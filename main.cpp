@@ -368,7 +368,7 @@ void showStartScreen()
     std::cout << "6. Check Balance" << std::endl;
     std::cout << "7. Change Password" << std::endl;
     std::cout << "8. Transaction" << std::endl;
-    std::cout << "8. Exit" << std::endl;
+    std::cout << "9. Exit" << std::endl;
     std::cout << "=====================" << std::endl;
     std::cout << "Enter your input: ";
     std::cin >> input; // Wait for user input
